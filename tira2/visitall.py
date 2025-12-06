@@ -1,8 +1,6 @@
 from itertools import permutations
 
 def find_route(distances):
-    if len(distances) == 2:
-        return distances[0][1]
     cities = list(range(len(distances)))
 
     routes = permutations(cities[1:])
@@ -12,17 +10,17 @@ def find_route(distances):
 
     for route in routes:
         route_len = 0
-        for i, city in enumerate(route[:-1]):
-            route_len += distances[city][route[i+1]]
+        for curr, next in zip(route, route[1:]):
+            route_len += distances[curr][next]
             if route_len > shortest_len:
                 break
         else:
-            route_len += distances[-2][-1]
             if route_len < shortest_len:
                 shortest_len = route_len
                 shortest_route = route
             elif route_len == shortest_len:
-                shortest_route = min([route, shortest_route])
+                shortest_route = min(shortest_route, route)
+
     shortest_route = list(map(lambda c: c+1, shortest_route))
     return (shortest_len, shortest_route)
 
