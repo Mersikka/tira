@@ -6,10 +6,8 @@ def count_steps(x):
         elif (i-2) % 3 != 0 and (i-4) % 3 != 0:
             result[i] = 0
         else:
-            result[i+3] = result.get(i+3, 0) + result[i]
-            result[i*2] = result.get(i*2, 0) + result[i]
+            result[i+3], result[i*2] = result.get(i+3, 0) + result[i], result.get(i*2, 0) + result[i]
     return result[x]
-        
 
 
 if __name__ == "__main__":
