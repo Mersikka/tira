@@ -6,18 +6,8 @@ def find_first(size, steps):
         if steps % 2 == 0:
             return 1
         return 2
-    
-    num = size
-    curr = 1
 
-    for i in range(steps, 0, -1):
-        if curr == 1:
-            curr = size - 1
-        elif curr == 2:
-            curr = size
-        else:
-            curr -= min(i, size)
-    return curr
+    
 
 if __name__ == "__main__":
     print(find_first(4, 3)) # 4
