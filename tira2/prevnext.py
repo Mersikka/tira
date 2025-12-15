@@ -29,10 +29,36 @@ class TreeSet:
                 node = node.right
 
     def prev(self, value):
-        # TODO
+        if not self.root:
+            return None
+
+        best = -float('inf')
+        node = self.root
+        while node:
+            if node.value < value:
+                best = max(node.value, best)
+                node = node.right
+            else:
+                node = node.left
+        if best == -float('inf'):
+            return None
+        return best
 
     def next(self, value):
-        # TODO
+        if not self.root:
+            return None
+        
+        best = float('inf')
+        node = self.root
+        while node:
+            if node.value > value:
+                best = min(node.value, best)
+                node = node.left
+            else:
+                node = node.right
+        if best == float('inf'):
+            return None
+        return best
 
 if __name__ == "__main__":
     numbers = TreeSet()
